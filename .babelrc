@@ -3,9 +3,13 @@
     "presets": [
         [
             "@babel/preset-env",
-            {
-                "modules": false
-            }
+            // {
+            //     "modules": false,
+            //     "targets": { "node": "current" },
+            //     "useBuiltIns": "usage",
+            //     "corejs": 3,
+            //     "shippedProposals": true
+            // }
         ]
     ]
 }

@@ -20,9 +20,9 @@ module.exports = {
     new HtmlWebpackPlugin({
       title: 'Jang Hyuk Title!',
       template: './views/index.ejs',
-      // filename: 'index.ejs',
-      minify: false,
-      chunks: ['index'],
+      filename: 'index.html',
+      // minify: false,
+      // chunks: ['index'],
     }),
   ],
 
@@ -39,11 +39,11 @@ module.exports = {
         use: [
           {
             loader: MiniCssExtractPlugin.loader,
-            options: {
-              reloadAll: false,
-            },
+            // options: {
+            //   reloadAll: false,
+            // },
           },
-          'style-loader',
+          // 'style-loader',
           'css-loader',
           'postcss-loader',
           'sass-loader',

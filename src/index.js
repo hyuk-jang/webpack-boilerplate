@@ -2,29 +2,31 @@ import './style.scss';
 
 console.log('Hello World from your main file!');
 
-const express = require('express');
-const path = require('path');
-var cookieParser = require('cookie-parser');
-// import path from 'path';
+// import express from 'express';
 
-var indexRouter = require('../routes/index');
-var usersRouter = require('../routes/users');
+// // const express = require('express');
+// const path = require('path');
+// var cookieParser = require('cookie-parser');
+// // import path from 'path';
 
-const app = express();
-const port = 9000;
+// var indexRouter = require('../routes/index');
+// var usersRouter = require('../routes/users');
 
-console.log('@port', port);
+// const app = express();
+// const port = 9000;
 
-app.set('views', path.join(__dirname, 'views'));
-app.set('view engine', 'ejs');
+// console.log('@port', port);
 
-app.use(express.json());
-app.use(express.urlencoded({ extended: false }));
-app.use(cookieParser());
-app.use(express.static(path.join(__dirname, 'public')));
+// app.set('views', path.join(__dirname, 'views'));
+// app.set('view engine', 'ejs');
 
-app.use('/', indexRouter);
-app.use('/users', usersRouter);
+// app.use(express.json());
+// app.use(express.urlencoded({ extended: false }));
+// app.use(cookieParser());
+// app.use(express.static(path.join(__dirname, 'public')));
 
-// app.get('/', (req, res) => res.send('Hello World!'));
-app.listen(port, () => console.log(`Example app listening on port ${port}!`));
+// app.use('/', indexRouter);
+// app.use('/users', usersRouter);
+
+// // app.get('/', (req, res) => res.send('Hello World!'));
+// app.listen(port, () => console.log(`Example app listening on port ${port}!`));
