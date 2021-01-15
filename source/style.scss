@@ -1,0 +1,12 @@
+@import './main.css';
+
+$color: rgb(26, 13, 98);
+
+h1 {
+  color: $color;
+}
+
+h1 > span {
+  font-weight: bold;
+  color: chocolate;
+}
