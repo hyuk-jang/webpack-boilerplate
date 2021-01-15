@@ -7,7 +7,7 @@ import icon from './images/icon.png';
 
 const h1Dom = document.createElement('h1');
 
-h1Dom.innerHTML = `${hello} ${world}`;
+h1Dom.innerHTML = `${world} ${hello}`;
 
 document.querySelector('#root').appendChild(h1Dom);
 
