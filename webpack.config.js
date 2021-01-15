@@ -1,3 +1,4 @@
+const path = require('path');
 // const webpack = require('webpack');
 
 // const MiniCssExtractPlugin = require('mini-css-extract-plugin');
@@ -6,13 +7,11 @@ module.exports = {
   // mode가 development면 개발용, production이면 배포용
   mode: 'development',
 
-  entry: {
-    main: './source/index.js',
-  },
+  entry: './source/index.js',
 
   output: {
-    path: '/dist',
-    filename: '[name].js',
+    path: path.resolve(__dirname, 'dist'),
+    filename: 'index.js',
     publicPath: '/',
   },
 
