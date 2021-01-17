@@ -1,5 +1,6 @@
 import hello from './hello';
 import world from './world';
+// const world = require('./world');
 
 import './style.scss';
 
@@ -21,7 +22,7 @@ import('./third')
 
 const h1Dom = document.createElement('h1');
 
-h1Dom.innerHTML = `${hello} ${world}`;
+h1Dom.innerHTML = `${hello} ${world} !!`;
 
 document.querySelector('#root').appendChild(h1Dom);
 
