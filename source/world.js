@@ -1,3 +1,3 @@
-var word = 'world';
+const word = 'world';
 
 export default word;

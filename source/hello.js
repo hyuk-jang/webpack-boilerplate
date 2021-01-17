@@ -1,3 +1,3 @@
-var word = 'hello';
+const word = 'hello';
 
 export default word;
