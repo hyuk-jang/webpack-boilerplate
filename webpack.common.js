@@ -8,16 +8,19 @@ const TerserPlugin = require('terser-webpack-plugin');
 
 const { WebpackManifestPlugin } = require('webpack-manifest-plugin');
 
+const nodeExternals = require('webpack-node-externals');
+
 module.exports = {
   entry: {
-    main: './source/index.js',
-    sub: './source/about.js',
+    index: './src/index.js',
+    // sub: './src/about.js',
   },
 
   output: {
     path: path.resolve(__dirname, 'dist'),
-    // filename: '[name].js',
-    filename: '[name].[chunkhash].js',
+    filename: '[name].js',
+    // filename: '[name].[chunkhash].js',
+    publicPath: 'http://localhost:8080/',
   },
 
   module: {
@@ -56,14 +59,8 @@ module.exports = {
     new HtmlWebpackPlugin({
       title: 'My App Index',
       filename: './index.html',
-      template: './source/index.html',
+      template: './src/views/index.ejs',
       chunks: ['main'],
-    }),
-    new HtmlWebpackPlugin({
-      title: 'My App About',
-      filename: './about.html',
-      template: './source/about.html',
-      chunks: ['sub'],
     }),
     // 미리 청크해시값을 알 수 있게 json 구조로 나와있습니다. 이 데이터를 사용하셔서 script의 src로 사용하시면 됩니다.
     new WebpackManifestPlugin({
@@ -92,5 +89,5 @@ module.exports = {
     extensions: ['.js', '.json', '.jsx', '.css'],
   },
 
-  externals: [],
+  externals: [nodeExternals()],
 };

@@ -1,32 +1,47 @@
 import './style.scss';
 
-console.log('Hello World from your main file!');
+import express from 'express';
 
-// import express from 'express';
+import webpack from 'webpack';
+import middleware from 'webpack-dev-middleware';
 
-// // const express = require('express');
-// const path = require('path');
-// var cookieParser = require('cookie-parser');
-// // import path from 'path';
+import path from 'path';
 
-// var indexRouter = require('../routes/index');
-// var usersRouter = require('../routes/users');
+import cookieParser from 'cookie-parser';
 
-// const app = express();
-// const port = 9000;
+const compiler = webpack(
+  {
+    // webpack options
+    stats: { colors: true },
+  },
+  // ...webpackConfig,
+);
 
-// console.log('@port', port);
+const indexRouter = require('./routes/index');
+const usersRouter = require('./routes/users');
 
-// app.set('views', path.join(__dirname, 'views'));
-// app.set('view engine', 'ejs');
+const app = express();
+const port = 8080;
 
-// app.use(express.json());
-// app.use(express.urlencoded({ extended: false }));
-// app.use(cookieParser());
-// app.use(express.static(path.join(__dirname, 'public')));
+console.log('@port', port);
 
-// app.use('/', indexRouter);
-// app.use('/users', usersRouter);
+app.set('views', path.join(__dirname, 'views'));
+app.set('view engine', 'ejs');
 
-// // app.get('/', (req, res) => res.send('Hello World!'));
-// app.listen(port, () => console.log(`Example app listening on port ${port}!`));
+app.use(express.json());
+app.use(express.urlencoded({ extended: false }));
+app.use(cookieParser());
+app.use(express.static(path.join(__dirname, 'public')));
+
+app.use(
+  middleware(compiler, {
+    publicPath: '/',
+    // webpack-dev-middleware options
+  }),
+);
+
+app.use('/', indexRouter);
+app.use('/users', usersRouter);
+
+// app.get('/', (req, res) => res.send('Hello World!'));
+app.listen(port, () => console.log(`Example app listening on port ${port}!`));

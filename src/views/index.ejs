@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= htmlWebpackPlugin.options.title %></title>
+    <!-- <link rel="stylesheet" href="/stylesheets/style.css" /> -->
+  </head>
+
+  <body>
+    <h1></h1>
+    <p>Welcome to</p>
+  </body>
+  <script>
+    const v = <%- JSON.stringify('name') %>;
+
+    const testDiv = document.createElement('div');
+
+    console.log(v);
+    document.querySelector('h1').appendChild(testDiv);
+  </script>
+</html>

@@ -14,12 +14,21 @@ module.exports = {
   // mode가 development면 개발용, production이면 배포용
   mode: 'development',
 
-  entry: './express/index.js',
+  devServer: {
+    // 정적 Path
+    contentBase: path.join(__dirname, 'dist'),
+    compress: true,
+    port: 9000,
+  },
+
+  entry: {
+    main: './source/index.js',
+    sub: './source/about.js',
+  },
 
   output: {
     path: path.resolve(__dirname, 'dist'),
     filename: '[name].js',
-    publicPath: 'http://localhost:8080/dist',
     // filename: '[name].[chunkhash].js',
   },
 
@@ -56,6 +65,25 @@ module.exports = {
     new ProgressPlugin(),
     // main.css 1개의 파일만 내보냄. filename이 없을 경우 main.css, sub.css가 생김
     new MiniCssExtractPlugin({ filename: 'main.css' }),
+    new HtmlWebpackPlugin({
+      title: 'My App Index',
+      filename: './index.html',
+      template: './source/index.html',
+      chunks: ['main'],
+    }),
+    new HtmlWebpackPlugin({
+      title: 'My App About',
+      filename: './about.html',
+      template: './source/about.html',
+      chunks: ['sub'],
+    }),
+    // 미리 청크해시값을 알 수 있게 json 구조로 나와있습니다. 이 데이터를 사용하셔서 script의 src로 사용하시면 됩니다.
+    new WebpackManifestPlugin({
+      fileName: 'assets.json',
+      basePath: '/',
+    }),
+    // 난독화된 파일의 소스맵을 그려서 개발자의 디버깅을 도와줍니다.
+    new SourceMapDevToolPlugin(),
   ],
 
   optimization: {
